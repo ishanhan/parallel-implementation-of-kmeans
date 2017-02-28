@@ -4,7 +4,7 @@ Parallel implementation of k-means clustering using MPI and PyCUDA. The main obj
 ## Dataset
 
 The dataset being used for this project is [Video Game Sales](https://www.kaggle.com/gregorut/videogamesales) obtained from Kaggle.
-The dataset has 11 features out of which 3 are removed using pre_processing.py (that is ``` Rank, Name and Publisher ``` and rest were transformed accordingly.
+The dataset contains 11 features out of which 3 were removed using pre_processing.py (that is ``` Rank, Name and Publisher ```) and rest were transformed accordingly.
 
 ## Checklist
 

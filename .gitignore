@@ -1,1 +1,4 @@
 *.csv
+*.ipynb_checkpoints
+*.~lock.modified_video_game_sales.csv#
+*.csv#

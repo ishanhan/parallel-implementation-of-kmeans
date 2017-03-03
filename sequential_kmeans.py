@@ -59,7 +59,6 @@ def kmeans(points, num_clusters, cutoff, initial, dimensions):
 			center_val[m] = center_val[m] / no_of_values
 		center.append(center_val)
 
-	print ""
 	compare_val = compare_center(initial, center, dimensions, num_clusters, cutoff)
 	if(compare_val == dimensions):
 		return 1, center

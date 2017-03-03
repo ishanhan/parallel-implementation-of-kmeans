@@ -8,7 +8,8 @@ The dataset contains 11 features out of which 3 were removed using pre_processin
 
 ## Checklist
 
-- [ ] Sequential K-means
+- [x] Data Cleaning
+- [x] Sequential K-means
 - [ ] Parallel K-means using MPI
 - [ ] Paralllel K-means using PyCuda
 - [ ] Graphs

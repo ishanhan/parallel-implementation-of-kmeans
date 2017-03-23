@@ -66,9 +66,10 @@ def main():
 			for i in xrange(len(fc)):
 				for j in xrange(len(fc[i])):
 					if len(fc[i][j]) != 0:
+						no[j] = int(no[j]) + 1
 						for k in xrange(len(fc[i][j])):
 							nfc[j][k] = float(nfc[j][k]) + float(fc[i][j][k])				
-							no[j] = int(no[j]) + 1
+							
 									
 			for i in xrange(len(nfc)):
 				for j in xrange(len(nfc[i])):

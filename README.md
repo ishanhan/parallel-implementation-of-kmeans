@@ -12,4 +12,4 @@ The dataset contains 11 features out of which 3 were removed using pre_processin
 - [x] Sequential K-means
 - [x] Parallel K-means using MPI
 - [x] Paralllel K-means using PyCuda
-- [ ] Graphs
+- [X] Graphs

@@ -22,7 +22,6 @@ def compare_center(initial_center, derived_center, dimensions, num_clusters, cut
 		diff = eucl_distance(initial_center[i], derived_center[i])
 		if(diff < cutoff):
 			flag += 1
-
 	return flag
 
 
@@ -33,6 +32,7 @@ def kmeans(points, num_clusters, cutoff, initial, dimensions):
 	
 	for i in xrange(num_clusters):
 		clusters.append([])
+
 	
 	for i in points:
 		min_val = 10000000000000
@@ -56,11 +56,12 @@ def kmeans(points, num_clusters, cutoff, initial, dimensions):
 			for k in xrange(dimensions):
 				center_val[k] += float(j[k])
 		for m in xrange(dimensions):
-			center_val[m] = center_val[m] / no_of_values
+			if no_of_values != 0:
+				center_val[m] = center_val[m] / no_of_values
 		center.append(center_val)
 
 	compare_val = compare_center(initial, center, dimensions, num_clusters, cutoff)
-	if(compare_val == dimensions):
+	if(compare_val == num_clusters):
 		return 1, center
 	else:
 		return 0, center
@@ -73,27 +74,28 @@ def main():
 	print "Enter the number of clusters you want to make:"
 	num_clusters = raw_input()
 	num_clusters = int(num_clusters)
-	with open('test.csv', 'rb') as f:
+	with open('modified_video_game_sales.csv', 'rb') as f:
 		reader = csv.reader(f)
 		dataset = list(reader)
-	dataset.pop(0)
-	#for i in dataset:
-		#i.pop(0)
-	num_points = len(dataset)
+	data = dataset
+	data.pop(0)
+	num_points = len(data)
 	cutoff = 0.2
-	dimensions = len(dataset[0])
-	initial = [[0,0], [1,0]]
-	#initial = random.sample(points, k)
+	dimensions = len(data[0])
+	initial = []
+	for i in xrange(num_clusters):
+		initial.append(data[i])
+	start_time = time.time()
 	while(True):
-		val, center = kmeans(dataset, num_clusters, cutoff, initial, dimensions)
+		val, center = kmeans(data, num_clusters, cutoff, initial, dimensions)
 		if(val == 1):
-			break
+		 	break
 		initial = center
+		i = i + 1
 
 	print "Final Centers are:"
 	print center
+	print ("Execution time %s seconds" % (time.time() - start_time))
 
 if __name__ == "__main__":
-	start_time = time.time()
 	main()
-	print ("Execution time %s seconds" % (time.time() - start_time))

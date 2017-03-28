@@ -1,0 +1,4 @@
+MPI:
+  mpi4py
+CUDA (python):
+  https://wiki.tiker.net/PyCuda/Installation/Linux/Ubuntu

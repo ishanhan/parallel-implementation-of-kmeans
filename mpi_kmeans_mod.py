@@ -33,7 +33,7 @@ def main():
 	global cutoff, dimensions, num_clusters, data, initial, min_dist
 	cutoff = 0.2
 	compare_val = 0
-	with open('modified_video_game_sales.csv','rb') as f:
+	with open('modified.csv','rb') as f:
 			reader = csv.reader(f)
 			data = list(reader)
 	data.pop(0)

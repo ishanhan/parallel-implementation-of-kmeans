@@ -19,11 +19,10 @@ def eucl_distance(point_one, point_two):
 
 def main():	
 	global cutoff, dimensions, dataset, num_clusters, data
-	
 	print "Enter the number of clusters you want to make:"
 	num_clusters = raw_input()
 	num_clusters = int(num_clusters)
-	with open('test.csv', 'rb') as f:
+	with open('modified.csv', 'rb') as f:
 		reader = csv.reader(f)
 		dataset = list(reader)
 	initial = []
@@ -32,6 +31,8 @@ def main():
 	for i in xrange(num_clusters):
 		initial.append(dataset[i])
 	#	dataset.pop(0)
+	f = open("cluster.txt", 'rw+')
+	f.write(str(initial))
 	initial = numpy.array(initial)
 	initial = initial.astype(numpy.float32)
 	num_points = []
@@ -118,11 +119,12 @@ def main():
 		if flag == 0:
 			compare_cutoff = False
 			print tot
+			f.write(str(tot))
 		else:
 			tot = numpy.array(tot)
 			initial = tot.astype(numpy.float32)
 	print "Execution time %s seconds" % (time.time() - start_time)
-	
+	f.close()
 if __name__ == "__main__":
 	start_time = time.time()
 	main()

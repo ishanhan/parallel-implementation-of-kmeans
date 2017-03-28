@@ -1,6 +1,9 @@
 import csv, time, random, math
+import matplotlib.pyplot as plt
+import pandas as pd
 
 
+colors = ['red', 'green', 'blue','yellow','black']
 def eucl_distance(point_one, point_two):
 	if(len(point_one) != len(point_two)):
 		raise Exception("Error: non comparable points")
@@ -62,6 +65,19 @@ def kmeans(points, num_clusters, cutoff, initial, dimensions):
 
 	compare_val = compare_center(initial, center, dimensions, num_clusters, cutoff)
 	if(compare_val == num_clusters):
+		curX, curY = [], []
+		iter_count = 0
+		for points in clusters:
+			curX, curY = [], []
+			for point in points:				
+				curX.append(point[4])
+				curY.append(point[8])
+			plt.scatter(curX,curY,c = colors[iter_count])
+			iter_count += 1
+		plt.xlabel("Video Game Sales in North America")
+    		plt.ylabel("Video Game Sales around Globe")
+    		plt.title("Clustering Output")
+		plt.savefig("Clustering_Images/clustering_data.png")
 		return 1, center
 	else:
 		return 0, center
@@ -74,7 +90,7 @@ def main():
 	print "Enter the number of clusters you want to make:"
 	num_clusters = raw_input()
 	num_clusters = int(num_clusters)
-	with open('modified_video_game_sales.csv', 'rb') as f:
+	with open('modified.csv', 'rb') as f:
 		reader = csv.reader(f)
 		dataset = list(reader)
 	data = dataset

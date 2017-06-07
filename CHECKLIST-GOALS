@@ -1,0 +1,7 @@
+### goals initially for the document fingerprinting project ###
+- [ ] Find different string matching techniques 
+- [ ] Compare the time complexity and which ones are more efficient 
+- [ ] implement finite automata 
+- [ ] implement knutt morris pratt
+- [ ] implement karp rabin method 
+- [ ] analyse why hash implementation is better than traditional string matching algorithms .

@@ -18,13 +18,14 @@ def main():
 	comm = MPI.COMM_WORLD
 	rank = comm.Get_rank()
 	size = comm.Get_size()	
+	
 	global cutoff, dimensions, dataset, num_clusters, data
 	
 	if rank == 0:
 		print "Enter the number of clusters you want to make:"
 		num_clusters = raw_input()
 		num_clusters = int(num_clusters)
-		with open('test.csv', 'rb') as f:
+		with open('modified.csv', 'rb') as f:
 			reader = csv.reader(f)
 			dataset = list(reader)
 		initial = []
@@ -45,7 +46,7 @@ def main():
 		loop += 1	
 		clusters = []
 		strpt = comm.bcast(initial, root = 0)
-		recv = comm.scatter( data,	 root = 0)
+		recv = comm.scatter(data, root = 0)
 		least = eucl_distance(strpt[0], recv)
 		for i in xrange(len(strpt)):
 			clusters.append([])	
@@ -57,11 +58,13 @@ def main():
 				lpoint = i
 	 	clusters[lpoint]= recv	
 		fc = comm.gather(clusters, root = 0)
+		
 		if rank == 0:
+			
 			nfc = []
 			no = []
 			for i in xrange(len(initial)):
-				nfc.append(['0', '0'])
+				nfc.append(['0'] * dimensions) 
 				no.append('0')
 			for i in xrange(len(fc)):
 				for j in xrange(len(fc[i])):
